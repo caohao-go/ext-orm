@@ -1,0 +1,16 @@
+swoole_orm.lo: /root/soft/install/ext-orm/swoole_orm.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/root/soft/install/ext-orm $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /root/soft/install/ext-orm/swoole_orm.c -o swoole_orm.lo 
+src/memory.lo: /root/soft/install/ext-orm/src/memory.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/root/soft/install/ext-orm $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /root/soft/install/ext-orm/src/memory.c -o src/memory.lo 
+src/operator.lo: /root/soft/install/ext-orm/src/operator.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/root/soft/install/ext-orm $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /root/soft/install/ext-orm/src/operator.c -o src/operator.lo 
+src/string.lo: /root/soft/install/ext-orm/src/string.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/root/soft/install/ext-orm $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /root/soft/install/ext-orm/src/string.c -o src/string.lo 
+src/array.lo: /root/soft/install/ext-orm/src/array.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/root/soft/install/ext-orm $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /root/soft/install/ext-orm/src/array.c -o src/array.lo 
+$(phplibdir)/swoole_orm.la: ./swoole_orm.la
+	$(LIBTOOL) --mode=install cp ./swoole_orm.la $(phplibdir)
+
+./swoole_orm.la: $(shared_objects_swoole_orm) $(SWOOLE_ORM_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS)  -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_swoole_orm) $(SWOOLE_ORM_SHARED_LIBADD)
+
